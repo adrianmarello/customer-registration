@@ -5,7 +5,7 @@ import { LocalStorageService } from 'src/app/core/services/local-storage.service
 @Component({
     selector: 'cmreg-header',
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss']
+    styleUrls: ['./header.component.sass']
 })
 export class HeaderComponent implements OnInit {
 

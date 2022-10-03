@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'cmreg-client-edit',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientEditComponent implements OnInit {
 
-  constructor() { }
+  public clientDNI!: number;
+
+  constructor(private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+        if (Number(params['dni'])) {
+            this.clientDNI = Number(params['dni'])
+        } else {
+            alert('No es un dni válido')
+            this.router.navigate(['/home'])
+        }
+    })
   }
 
 }

@@ -1,1 +1,117 @@
-<p>client-form works!</p>
+<form (submit)="onSubmit(clientForm)" [formGroup]="clientForm">
+    <div class="mb-3">
+        <label for="client-first-name" class="form-label">Nombre</label>
+        <input
+            formControlName="firstName"
+            type="text"
+            class="form-control"
+            id="client-first-name"
+        />
+        <div *ngIf="clientForm.controls['firstName'].invalid && clientForm.controls['firstName'].touched">
+            <div *ngIf="clientForm.get('firstName')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese un nombre
+            </div>
+            <div *ngIf="clientForm.get('firstName')?.hasError('maxlength')" class="invalid-feedback d-block">
+                El nombre debe tener como máximo 20 caracteres
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-last-name" class="form-label">Apellido</label>
+        <input
+            formControlName="lastName"
+            type="text"
+            class="form-control"
+            id="client-last-name"
+        />
+        <div *ngIf="clientForm.controls['lastName'].invalid && clientForm.controls['lastName'].touched">
+            <div *ngIf="clientForm.get('lastName')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese un apellido
+            </div>
+            <div *ngIf="clientForm.get('lastName')?.hasError('maxlength')" class="invalid-feedback d-block">
+                El apellido debe tener como máximo 20 caracteres
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-document-number" class="form-label">DNI</label>
+        <input
+            formControlName="documentNumber"
+            type="number"
+            class="form-control"
+            id="client-document-number"
+        />
+        <div *ngIf="clientForm.controls['documentNumber'].invalid && clientForm.controls['documentNumber'].touched">
+            <div *ngIf="clientForm.get('documentNumber')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese un número de documento
+            </div>
+            <div *ngIf="clientForm.get('documentNumber')?.hasError('max')" class="invalid-feedback d-block">
+                El número de documento es incorrecto
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-email" class="form-label">Correo Electrónico</label>
+        <input
+            formControlName="email"
+            type="text"
+            class="form-control"
+            id="client-email"
+        />
+        <div *ngIf="clientForm.controls['email'].invalid && clientForm.controls['email'].touched">
+            <div *ngIf="clientForm.get('email')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese un correo electrónico
+            </div>
+            <div *ngIf="clientForm.get('email')?.hasError('maxlength')" class="invalid-feedback d-block">
+                El correo electrónico debe tener como máximo 60 caracteres
+            </div>
+            <div *ngIf="clientForm.get('email')?.hasError('email')" class="invalid-feedback d-block">
+                Debe ingresar un correo electrónico válido
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-birthday" class="form-label">Fecha de Nacimiento</label>
+        <input
+            formControlName="birthday"
+            type="date"
+            class="form-control"
+            id="client-birthday"
+        />
+        <div *ngIf="clientForm.controls['birthday'].invalid && clientForm.controls['birthday'].touched">
+            <div *ngIf="clientForm.get('birthday')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese la fecha de nacimiento
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-tel" class="form-label">Celular</label>
+        <input
+            id="client-tel"
+            formControlName="phone"
+            type="number"
+            class="form-control"
+        />
+        <div *ngIf="clientForm.controls['phone'].invalid && clientForm.controls['phone'].touched">
+            <div *ngIf="clientForm.get('phone')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese un número de teléfono
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label for="client-address" class="form-label">Dirección</label>
+        <input
+            id="client-address"
+            formControlName="address"
+            type="text"
+            class="form-control"
+        />
+        <div *ngIf="clientForm.controls['address'].invalid && clientForm.controls['address'].touched">
+            <div *ngIf="clientForm.get('address')?.hasError('required')" class="invalid-feedback d-block">
+                Ingrese una dirección
+            </div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <button type="button" class="btn btn-light ms-2" routerLink="/home">Cancelar</button>
+</form>

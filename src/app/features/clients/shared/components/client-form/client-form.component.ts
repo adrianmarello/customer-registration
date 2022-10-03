@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ClientEntity } from '../../entities/client.entity';
+import { ClientService } from '../../services/client.service';
 
 @Component({
   selector: 'cmreg-client-form',
@@ -7,9 +11,54 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientFormComponent implements OnInit {
 
-  constructor() { }
+  public clientForm!: FormGroup;
+  @Input() clientDNI!: number;
+  client!: ClientEntity | undefined;
+  clients: Array<ClientEntity> = [];
+
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private clientService: ClientService
+  ) {
+    this.clients = this.clientService.clients
+    this.clientForm = this.formBuilder.group({
+        firstName: ['', [Validators.required, Validators.maxLength(20)]],
+        lastName: ['', [Validators.required, Validators.maxLength(20)]],
+        email: ['', [Validators.required, Validators.maxLength(60), Validators.email]],
+        documentNumber: [null, [Validators.required, Validators.max(99999999)]],
+        birthday: [null, Validators.required],
+        phone: [null, Validators.required],
+        address: [null, [Validators.required, Validators.maxLength(40)]],
+    })
+  }
 
   ngOnInit(): void {
+    if(this.clientDNI) {
+        this.client = this.clients.find((c: ClientEntity) => c.documentNumber == this.clientDNI)
+        this.clientForm.setValue(this.client || {})
+    }
+  }
+
+  onSubmit(form: FormGroup) {
+      this.clientForm.markAllAsTouched();
+      if(this.clientForm.valid) {
+          if(this.clientDNI) {
+              this.editClient();
+          } else {
+              this.addClient();
+          }
+          this.clientForm.reset();
+          this.router.navigate(['/home'])
+      }
+  }
+
+  addClient() {
+      this.clientService.addClient(this.clientForm.value)
+  }
+
+  editClient() {
+    this.clientService.editClient(this.clientDNI, this.clientForm.value)
   }
 
 }

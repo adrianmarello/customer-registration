@@ -1,15 +1,25 @@
-<form>
+<form (submit)="onSubmit(loginForm)" [formGroup]="loginForm">
   <img class="mb-4" src="assets/images/angular-logo.png" alt="logo angular" width="120px" height="120px">
   <h1 class="h3 mb-3 fw-normal">Inicio de Sesión</h1>
 
   <div class="form-floating mb-1">
-    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre de usuario">
+    <input type="text" class="form-control" id="floatingInput" placeholder="Nombre de usuario" formControlName="username">
     <label for="floatingInput">Nombre de usuario</label>
+    <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" style="text-align: left; margin-left: 2px;">
+      <div *ngIf="loginForm.get('username')?.hasError('required')" class="invalid-feedback d-block">
+          Debe ingresar un nombre de usuario
+      </div>
+    </div>
   </div>
 
   <div class="form-floating">
-    <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+    <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
     <label for="floatingPassword">Contraseña</label>
+    <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" style="text-align: left; margin-left: 2px;">
+      <div *ngIf="loginForm.get('password')?.hasError('required')" class="invalid-feedback d-block">
+          Debe ingresar una contraseña
+      </div>
+    </div>
   </div>
 
   <button class="w-100 btn btn-lg btn-primary mt-3 custom-btn" type="submit">Ingresar</button>

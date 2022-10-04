@@ -16,9 +16,6 @@
                 <td>{{ client.documentNumber }}</td>
                 <td>{{ client.birthday | date:'d/M/yyyy' }}</td>
                 <td>
-                    <!-- <button type="button" class="btn btn-light" [routerLink]="['/client',client.documentNumber,'detail']" title="Detalle">
-                        <i class="bi bi-postcard"></i>
-                    </button> -->
                     <button type="button" class="btn btn-light ms-1" [routerLink]="['/client',client.documentNumber,'edit']" title="Modificar">
                         <i class="bi bi-pencil-square"></i>
                     </button>

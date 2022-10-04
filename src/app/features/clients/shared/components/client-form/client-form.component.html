@@ -71,13 +71,13 @@
         </div>
     </div>
     <div class="mb-3">
-        <label for="client-birthday" class="form-label">Fecha de Nacimiento</label>
-        <input
-            formControlName="birthday"
-            type="date"
-            class="form-control"
-            id="client-birthday"
-        />
+        <mat-form-field appearance="fill">
+            <mat-label>Fecha de Nacimiento</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="birthday">
+            <mat-hint>DD/MM/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
         <div *ngIf="clientForm.controls['birthday'].invalid && clientForm.controls['birthday'].touched">
             <div *ngIf="clientForm.get('birthday')?.hasError('required')" class="invalid-feedback d-block">
                 Ingrese la fecha de nacimiento

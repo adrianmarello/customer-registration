@@ -8,7 +8,7 @@ import { ClientEditComponent } from './client-edit/client-edit.component';
 import { ClientFormComponent } from './shared/components/client-form/client-form.component';
 import { ClientTableComponent } from './shared/components/client-table/client-table.component';
 import { ClientRegistrationComponent } from './client-registration/client-registration.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 @NgModule({
@@ -24,8 +24,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     ClientsRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule
   ]
 })
 export class ClientsModule { }

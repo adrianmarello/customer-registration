@@ -1,13 +1,13 @@
 <div class="container">
     <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
         <a routerLink="home" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-            <span class="fs-4">Registro de Clientes</span>
+            <span class="fs-2">Registro de Clientes</span>
         </a>
 
         <ul class="nav nav-pills">
             <li class="nav-item" *ngFor="let item of menuItems">
                 <a [routerLink]="item.route" [class]="item.class" [ngClass]="{'active' : currentRoute==item.route}">
-                    {{ item.name }}
+                    {{ item.name }} <i [class]="item.icon"></i>
                 </a>
             </li>
         </ul>
@@ -15,7 +15,7 @@
             Iniciar Sesión
         </button>
         <button type="button" class="btn btn-danger ms-2" routerLink="/auth/logout" *ngIf="userLogged">
-            Cerrar Sesión
+            Cerrar Sesión <i class="bi bi-box-arrow-right"></i>
         </button>
     </header>
 </div>

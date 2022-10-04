@@ -12,8 +12,8 @@ export class HeaderComponent implements OnInit {
     userLogged: boolean = this.localStorageService.get('access_token') ? true : false;
     currentRoute: string = '';
     menuItems: Array<any> = [
-        {name: 'Inicio', class: 'nav-link', route: '/home'},
-        {name: 'Registración', class: 'nav-link', route: '/client/registration'}
+        {name: 'Inicio', class: 'nav-link', route: '/home', icon: 'bi bi-house-door'},
+        {name: 'Registración', class: 'nav-link', route: '/client/registration', icon: 'bi bi-file-text'}
     ]
 
     constructor(private route: Router, private localStorageService: LocalStorageService) { 

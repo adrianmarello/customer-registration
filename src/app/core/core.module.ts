@@ -1,15 +1,27 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { CommonModule, TitleCasePipe } from '@angular/common';
 import { LocalStorageService } from './services/local-storage.service';
-import { LayoutModule } from './layout/layout.module';
 import { LoginService } from './services/login.service';
+import { ConfigurationService } from './services/configuration.service';
+
+export function configurationServiceFactory(configurationService: ConfigurationService) {
+  return () => configurationService.load();
+}
 
 @NgModule({
   declarations: [],
   imports: [
-    CommonModule,
-    LayoutModule
+    CommonModule
   ],
-  providers: [LocalStorageService, LoginService, TitleCasePipe]
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: configurationServiceFactory,
+      deps: [
+        ConfigurationService,
+      ],
+      multi: true,
+  },
+  LocalStorageService, LoginService, TitleCasePipe]
 })
 export class CoreModule { }

@@ -12,6 +12,9 @@ export class LoginService {
   constructor(private localStorageService: LocalStorageService, private router: Router, private spinner: NgxSpinnerService) { }
 
   login(user: User): Promise<User | false> {
+    // Retornamos una Promesa para simular una llamada a una API de login
+    // Buscamos el usuario ingresado en el Storage
+    // Si existe generamos un access token en el Storage y devolvemos el usuario
     var promise = new Promise<User | false>((resolve, reject) => {
       this.spinner.show()
       setTimeout(() => {
@@ -27,10 +30,10 @@ export class LoginService {
       }, 1000);
     });
     return promise;
-    
   }
 
   logout(): void {
+    // Eliminamos el access token del Storage y redireccionamos al usuario a la página de login
     this.localStorageService.remove('access_token');
     this.router.navigate(['/auth/login']);
   }

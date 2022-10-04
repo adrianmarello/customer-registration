@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LayoutModule } from './layout/layout.module';
+import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatInputModule } from '@angular/material/input';
 import { MatNativeDateModule } from '@angular/material/core';
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { MomentDateModule, MomentDateAdapter } from '@angular/material-moment-adapter';
+
+import { LayoutModule } from './layout/layout.module';
+import { DniFormatPipe } from './pipes/dni-format.pipe';
+
 
 export const MY_FORMATS = {
   parse: {
@@ -20,6 +23,10 @@ export const MY_FORMATS = {
   },
 };
 
+const SHARED = [
+  DniFormatPipe
+]
+
 const SHARED_MODULES = [
   LayoutModule,
   FormsModule,
@@ -27,22 +34,25 @@ const SHARED_MODULES = [
   MomentDateModule
 ];
 
-const MATERIAL_MODULES = [
+const SHARED_MATERIAL_MODULES = [
   MatDatepickerModule,
   MatInputModule,
   MatNativeDateModule
 ]
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SHARED
+  ],
   imports: [
     CommonModule,
     SHARED_MODULES,
-    MATERIAL_MODULES
+    SHARED_MATERIAL_MODULES
   ],
   exports: [
+    SHARED,
     SHARED_MODULES,
-    MATERIAL_MODULES
+    SHARED_MATERIAL_MODULES
   ],
   providers: [
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },

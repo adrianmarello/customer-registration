@@ -6,11 +6,10 @@ import { LocalStorageService } from './local-storage.service';
 })
 export class ConfigurationService {
 
-    constructor(private localStorageService: LocalStorageService) { 
-      this.localStorageService.set('users', [{username: 'admin', password: 'admin'}])
-    }
-
+    constructor(private localStorageService: LocalStorageService) {}
+    
     load() {
-        console.log('Default admin user initialization');
+        // Creamos nuestro usuario admin antes que todo
+        this.localStorageService.set('users', [{username: 'admin', password: 'admin'}])
     }
 }

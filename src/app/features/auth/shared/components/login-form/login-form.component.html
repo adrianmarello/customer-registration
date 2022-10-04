@@ -5,6 +5,9 @@
   <div class="form-floating mb-1">
     <input type="text" class="form-control" id="floatingInput" placeholder="Nombre de usuario" formControlName="username">
     <label for="floatingInput">Nombre de usuario</label>
+    <!-- Este div que va a contener todos los errores para el control "username" es un caso perfecto para componentizar -->
+    <!-- Me imagino un componente que reciba como parametro el control y se encargue de dibujar todos los errores -->
+    <!-- Para formularios mas grandes seria un gran ahorro de código -->
     <div *ngIf="loginForm.controls['username'].invalid && loginForm.controls['username'].touched" style="text-align: left; margin-left: 2px;">
       <div *ngIf="loginForm.get('username')?.hasError('required')" class="invalid-feedback d-block">
           Debe ingresar un nombre de usuario
@@ -15,6 +18,7 @@
   <div class="form-floating">
     <input type="password" class="form-control" id="floatingPassword" placeholder="Password" formControlName="password">
     <label for="floatingPassword">Contraseña</label>
+    <!-- Aqui iria el componente mencionado anteriormente y recibiria como parametro loginForm.controls['password'] por Ej.-->
     <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" style="text-align: left; margin-left: 2px;">
       <div *ngIf="loginForm.get('password')?.hasError('required')" class="invalid-feedback d-block">
           Debe ingresar una contraseña

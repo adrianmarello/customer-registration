@@ -13,7 +13,7 @@
             <tr *ngFor="let client of clients">
                 <td>{{ client.firstName | titlecase }}</td>
                 <td>{{ client.lastName | titlecase }}</td>
-                <td>{{ client.documentNumber }}</td>
+                <td>{{ client.documentNumber | dniFormat }}</td>
                 <td>{{ client.birthday | date:'d/M/yyyy' }}</td>
                 <td>
                     <button type="button" class="btn btn-light ms-1" [routerLink]="['/client',client.documentNumber,'edit']" title="Modificar">

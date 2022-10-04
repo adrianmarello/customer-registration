@@ -14,7 +14,9 @@ export class ClientTableComponent implements OnInit {
   clientsChangeSubscription: Subscription;
 
   constructor(private clientService: ClientService) {
-      this.clientsChangeSubscription = this.clientService.clientsChange.subscribe(() => this.clients = this.clientService.clients)
+    // Me suscribo a este evento que se va a disparar cuando haya una actualización en el Storage de clientes
+    // Asi actualizo mi Array local de clientes
+    this.clientsChangeSubscription = this.clientService.clientsChange.subscribe(() => this.clients = this.clientService.clients)
   }
 
   ngOnInit(): void {
